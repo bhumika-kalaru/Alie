@@ -19,7 +19,7 @@ class myProfile extends StatelessWidget {
             SizedBox(
               height: 300,
             ),
-            Center(child: Text('Single tap to copy')),
+            Center(child: Text('Tap to copy')),
             SizedBox(
               height: 50,
             ),
