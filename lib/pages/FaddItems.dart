@@ -40,17 +40,17 @@ class _FaddItemsState extends State<FaddItems> {
                 ),
               ),
             ),
-            Text(
-              'IMAGE',
-              style: TextStyle(fontSize: 40),
-            ),
-            Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Color(0xCC777676))),
-              height: 400,
-              width: 376,
-              child: GestureDetector(child: Center(child: Icon(Icons.add))),
-            ),
+//             Text(
+//               'IMAGE',
+//               style: TextStyle(fontSize: 40),
+//             ),
+//             Container(
+//               decoration:
+//                   BoxDecoration(border: Border.all(color: Color(0xCC777676))),
+//               height: 400,
+//               width: 376,
+//               child: GestureDetector(child: Center(child: Icon(Icons.add))),
+//             ),
             Container(
               height: 90,
               width: 500,
