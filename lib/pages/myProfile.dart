@@ -14,17 +14,31 @@ class myProfile extends StatelessWidget {
             onTap: () => Navigator.pop(context),
           )),
       body: Center(
-        child: GestureDetector(
-          child: Tooltip(
-            message: 'copied to clipboard',
-            // triggerMode: TooltipTriggerMode.tap,
-            child: ListTile(
-                onTap: () {
+        child: Column(
+          children: [
+            SizedBox(
+              height: 300,
+            ),
+            Center(child: Text('Single tap to copy')),
+            SizedBox(
+              height: 50,
+            ),
+            Center(
+              child: OutlinedButton(
+                child: Tooltip(
+                  message: 'SIngle tap to copy',
+                  // triggerMode: TooltipTriggerMode.tap,
+                  child: ListTile(
+                      title:
+                          Text('                   bhumikakalaru@gmail.com')),
+                ),
+                onPressed: () {
                   Clipboard.setData(
                       ClipboardData(text: 'bhumikakalru@gmail.com'));
                 },
-                title: Text('                   bhumikakalaru@gmail.com')),
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

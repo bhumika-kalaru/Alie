@@ -76,8 +76,12 @@ class _lostPageState extends State<lostPage> {
   Widget buildUser(User user) => GestureDetector(
         child: ListTile(
           title: Text(user.d),
-          subtitle: Text(
-              'Key Details: ' + user.k + '\n' + 'Contact Details: ' + user.c),
+          subtitle: Text('Key Details: ' +
+              user.k +
+              '\n' +
+              'Contact Details: ' +
+              user.c +
+              '\n'),
         ),
         // onTap: Navigator.push(context, MaterialPageRoute(builder: (context)=>loginpage())),
       );

@@ -74,8 +74,12 @@ class _foundPageState extends State<foundPage> {
 
   Widget buildUser(User user) => ListTile(
         title: Text(user.d),
-        subtitle: Text(
-            'Key Details: ' + user.k + '\n' + 'Contact Details: ' + user.c),
+        subtitle: Text('Key Details: ' +
+            user.k +
+            '\n' +
+            'Contact Details: ' +
+            user.c +
+            '\n'),
       );
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
       .collection('Found')

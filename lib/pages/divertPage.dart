@@ -25,13 +25,18 @@ class _DivertPageState extends State<DivertPage> {
         child: ListView(
           children: [
             ListTile(
+              tileColor: Colors.blueAccent,
               title: Center(child: Text('Account')),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => profile()));
               },
             ),
+            SizedBox(
+              height: 20,
+            ),
             ListTile(
+              tileColor: Colors.blueGrey,
               title: Center(child: Text('Developer Contacts')),
               onTap: () {
                 Navigator.push(context,
@@ -43,10 +48,13 @@ class _DivertPageState extends State<DivertPage> {
       ),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 7, 11, 31),
-        title: Text('Welcome to ALie'),
+        title: Text('           Welcome to ALie'),
         actions: [
           GestureDetector(
-            child: Icon(Icons.logout),
+            child: Icon(
+              Icons.logout,
+              color: Colors.red,
+            ),
             onTap: () {
               setState(() {
                 final provider =
@@ -59,38 +67,48 @@ class _DivertPageState extends State<DivertPage> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => lostPage()));
-              },
-              child: Center(
-                  child: Text(
-                'Lost',
-                style: TextStyle(
-                    color: Colors.pink,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold),
-              )),
-            ),
+          SizedBox(
+            height: 150,
           ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => foundPage()));
-              },
-              child: Center(
-                  child: Text(
-                'Found',
-                style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold),
-              )),
+          OutlinedButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => lostPage()));
+            },
+            style: OutlinedButton.styleFrom(
+              shape: StadiumBorder(),
+              side: BorderSide(width: 5.0, color: Colors.blue),
             ),
-          )
+            child: Center(
+                child: Text(
+              'Lost',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 100,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
+          SizedBox(
+            height: 200,
+          ),
+          OutlinedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => foundPage()));
+            },
+            style: OutlinedButton.styleFrom(
+              shape: StadiumBorder(),
+              side: BorderSide(width: 5.0, color: Colors.blue),
+            ),
+            child: Center(
+                child: Text(
+              'Found',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 100,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
         ],
       ),
     );
