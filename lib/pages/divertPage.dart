@@ -48,7 +48,7 @@ class _DivertPageState extends State<DivertPage> {
       ),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 7, 11, 31),
-        title: Text('           Welcome to ALie'),
+        title: Text('           Welcome to Alie'),
         actions: [
           GestureDetector(
             child: Icon(
