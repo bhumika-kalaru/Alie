@@ -1,7 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alie">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAK_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAK_STORAGE" />
    <application
         android:label="alie"
         android:icon="@mipmap/ic_launcher">
