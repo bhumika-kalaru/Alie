@@ -50,25 +50,34 @@ class _foundPageState extends State<foundPage> {
           child: Icon(Icons.arrow_back),
         ),
       ),
-      body: StreamBuilder<List<User>>(
-        stream: readUsers(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something went wrong! ${snapshot.error}');
-          } else if (snapshot.hasData) {
-            final users = snapshot.data!;
-            print('$users');
+      body: Stack(children: [
+        Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Color(0xFF0A0E21)!,
+            Colors.blueGrey[600]!,
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        ),
+        StreamBuilder<List<User>>(
+          stream: readUsers(),
+          builder: ((context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong! ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              final users = snapshot.data!;
+              print('$users');
 
-            return ListView(
-              children: users.map(buildUser).toList(),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }),
-      ),
+              return ListView(
+                children: users.map(buildUser).toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
+        ),
+      ]),
     );
   }
 

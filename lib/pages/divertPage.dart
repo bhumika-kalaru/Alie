@@ -65,52 +65,71 @@ class _DivertPageState extends State<DivertPage> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 150,
-          ),
-          OutlinedButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => lostPage()));
-            },
-            style: OutlinedButton.styleFrom(
-              shape: StadiumBorder(),
-              side: BorderSide(width: 5.0, color: Colors.blue),
+      body: Stack(children: [
+        Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Color(0xFF0A0E21)!,
+            Colors.blueGrey[600]!,
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        ),
+        // Container(
+        //   height: 800,
+        //   width: 200,
+        //   padding: EdgeInsets.all(100),
+        //   decoration: BoxDecoration(
+        //       gradient: LinearGradient(colors: [
+        //     Colors.blue[300]!,
+        //     Colors.blue[600]!,
+        //   ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        // ),
+        Column(
+          children: [
+            SizedBox(
+              height: 150,
             ),
-            child: Center(
-                child: Text(
-              'Lost',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 100,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-          SizedBox(
-            height: 200,
-          ),
-          OutlinedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => foundPage()));
-            },
-            style: OutlinedButton.styleFrom(
-              shape: StadiumBorder(),
-              side: BorderSide(width: 5.0, color: Colors.blue),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => lostPage()));
+              },
+              // style: OutlinedButton.styleFrom(
+              //   shape: StadiumBorder(),
+              //   side: BorderSide(width: 5.0, color: Colors.blue),
+              // ),
+              child: Center(
+                  child: Text(
+                'Lost',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 100,
+                    fontWeight: FontWeight.bold),
+              )),
             ),
-            child: Center(
-                child: Text(
-              'Found',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 100,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-        ],
-      ),
+            SizedBox(
+              height: 200,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => foundPage()));
+              },
+              // style: OutlinedButton.styleFrom(
+              //   shape: StadiumBorder(),
+              //   side: BorderSide(width: 5.0, color: Colors.blue),
+              // ),
+              child: Center(
+                  child: Text(
+                'Found',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 100,
+                    fontWeight: FontWeight.bold),
+              )),
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
