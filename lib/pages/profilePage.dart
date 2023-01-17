@@ -1,5 +1,7 @@
+import 'package:alie/pages/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'consts.dart';
 
 class profile extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser!;
@@ -7,7 +9,7 @@ class profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 7, 11, 31),
+          backgroundColor: bar,
           title: Text('                   Profile'),
           leading: GestureDetector(
             onTap: () {

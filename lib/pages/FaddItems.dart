@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'GestureDetector.dart';
-import 'foundPage.dart';
-import 'lostPage.dart';
-import 'GestureDetector.dart';
+import 'consts.dart';
 
 class FaddItems extends StatefulWidget {
   @override
@@ -20,6 +17,25 @@ class _FaddItemsState extends State<FaddItems> {
   late var fDes = "";
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: bar,
+        title: Text('Create an Alie'),
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.check),
+            onTap: () {
+              createUser(des: fDes, k: fk, con: fcon);
+              Navigator.pop(context);
+            },
+          ),
+        ],
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -40,17 +56,6 @@ class _FaddItemsState extends State<FaddItems> {
                 ),
               ),
             ),
-            // Text(
-            //   'IMAGE',
-            //   style: TextStyle(fontSize: 40),
-            // ),
-            // Container(
-            //   decoration:
-            //       BoxDecoration(border: Border.all(color: Color(0xCC777676))),
-            //   height: 400,
-            //   width: 376,
-            //   child: GestureDetector(child: Center(child: Icon(Icons.add))),
-            // ),
             Container(
               height: 90,
               width: 500,
@@ -89,26 +94,18 @@ class _FaddItemsState extends State<FaddItems> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 18,
+            ),
+            // FloatingActionButton.extended(
+            //   label: Text("Image"),
+            //   icon: Icon(Icons.add),
+            //   onPressed: () {
+            //     Navigator.push(
+            //         context, MaterialPageRoute(builder: (context) => Fimage()));
+            //   },
+            // ),
           ],
-        ),
-      ),
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 7, 11, 31),
-        title: Text('Create an Alie'),
-        actions: [
-          GestureDetector(
-            child: Icon(Icons.check),
-            onTap: () {
-              createUser(des: fDes, k: fk, con: fcon);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back),
-          onTap: () {
-            Navigator.pop(context);
-          },
         ),
       ),
     );

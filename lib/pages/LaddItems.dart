@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'GestureDetector.dart';
-import 'foundPage.dart';
-import 'lostPage.dart';
-import 'GestureDetector.dart';
+import 'consts.dart';
 
 class LaddItems extends StatefulWidget {
   @override
@@ -20,6 +17,25 @@ class _LaddItemsState extends State<LaddItems> {
   late var fDes = "";
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: bar,
+        title: Text('Create an Alie'),
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.check),
+            onTap: () {
+              createUser(des: fDes, k: fk, con: fcon);
+              Navigator.pop(context);
+            },
+          ),
+        ],
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -90,25 +106,6 @@ class _LaddItemsState extends State<LaddItems> {
               ),
             ),
           ],
-        ),
-      ),
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 7, 11, 31),
-        title: Text('Create an Alie'),
-        actions: [
-          GestureDetector(
-            child: Icon(Icons.check),
-            onTap: () {
-              createUser(des: fDes, k: fk, con: fcon);
-              Navigator.pop(context);
-            },
-          ),
-        ],
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back),
-          onTap: () {
-            Navigator.pop(context);
-          },
         ),
       ),
     );

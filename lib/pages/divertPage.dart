@@ -1,12 +1,13 @@
 import 'package:alie/pages/foundPage.dart';
-import 'package:alie/pages/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../googlesignin.dart';
 import 'lostPage.dart';
 import 'myProfile.dart';
+import 'package:alie/main.dart';
+import 'consts.dart';
 import 'profilePage.dart';
 
 class DivertPage extends StatefulWidget {
@@ -21,11 +22,11 @@ class _DivertPageState extends State<DivertPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        backgroundColor: Color.fromARGB(255, 7, 11, 31),
+        backgroundColor: buttonColor,
         child: ListView(
           children: [
             ListTile(
-              tileColor: Colors.blueAccent,
+              tileColor: bar,
               title: Center(child: Text('Account')),
               onTap: () {
                 Navigator.push(context,
@@ -36,7 +37,7 @@ class _DivertPageState extends State<DivertPage> {
               height: 20,
             ),
             ListTile(
-              tileColor: Colors.blueGrey,
+              tileColor: bar,
               title: Center(child: Text('Developer Contacts')),
               onTap: () {
                 Navigator.push(context,
@@ -47,13 +48,14 @@ class _DivertPageState extends State<DivertPage> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 7, 11, 31),
-        title: Text('           Welcome to Alie'),
+        backgroundColor: bar,
+        title: Text('Welcome to Alie'),
+        centerTitle: true,
         actions: [
           GestureDetector(
             child: Icon(
               Icons.logout,
-              color: Colors.red,
+              color: red,
             ),
             onTap: () {
               setState(() {
@@ -67,67 +69,60 @@ class _DivertPageState extends State<DivertPage> {
       ),
       body: Stack(children: [
         Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color(0xFF0A0E21)!,
-            Colors.blueGrey[600]!,
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        ),
-        // Container(
-        //   height: 800,
-        //   width: 200,
-        //   padding: EdgeInsets.all(100),
-        //   decoration: BoxDecoration(
-        //       gradient: LinearGradient(colors: [
-        //     Colors.blue[300]!,
-        //     Colors.blue[600]!,
-        //   ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        // ),
-        Column(
-          children: [
-            SizedBox(
-              height: 150,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => lostPage()));
-              },
-              // style: OutlinedButton.styleFrom(
-              //   shape: StadiumBorder(),
-              //   side: BorderSide(width: 5.0, color: Colors.blue),
-              // ),
-              child: Center(
-                  child: Text(
-                'Lost',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold),
-              )),
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => foundPage()));
-              },
-              // style: OutlinedButton.styleFrom(
-              //   shape: StadiumBorder(),
-              //   side: BorderSide(width: 5.0, color: Colors.blue),
-              // ),
-              child: Center(
-                  child: Text(
-                'Found',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 100,
-                    fontWeight: FontWeight.bold),
-              )),
-            ),
-          ],
+          child: Column(
+            children: [
+              SizedBox(
+                height: 150,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => lostPage()));
+                  },
+                  child: Container(
+                    width: 250,
+                    decoration: BoxDecoration(
+                        boxShadow: greenShadow,
+                        color: white,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Center(
+                      child: Text('Lost',
+                          style: GoogleFonts.dancingScript(
+                            textStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: 100,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
+                  )),
+              SizedBox(
+                height: 200,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => foundPage()));
+                },
+                child: Center(
+                  child: Container(
+                    width: 300,
+                    decoration: BoxDecoration(
+                        boxShadow: greenShadow,
+                        color: white,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Center(
+                        child: Text('Found',
+                            style: GoogleFonts.dancingScript(
+                              textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 100,
+                                  fontWeight: FontWeight.bold),
+                            ))),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ]),
     );

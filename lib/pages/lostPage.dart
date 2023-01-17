@@ -1,16 +1,13 @@
 import 'package:alie/pages/LaddItems.dart';
-import 'package:alie/pages/loginpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'profilePage.dart';
-import 'FaddItems.dart';
-import 'GestureDetector.dart';
-
-List<Widget> lostTiles = [];
+import 'showItem.dart';
+import 'package:alie/main.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'consts.dart';
 
 class lostPage extends StatefulWidget {
   const lostPage({Key? key}) : super(key: key);
-
   @override
   State<lostPage> createState() => _lostPageState();
 }
@@ -20,8 +17,9 @@ class _lostPageState extends State<lostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 7, 11, 31),
+        backgroundColor: bar,
         title: Text('Lost Items'),
+        centerTitle: true,
         actions: [
           GestureDetector(
             onTap: () {
@@ -33,13 +31,6 @@ class _lostPageState extends State<lostPage> {
             child: Icon(Icons.add),
           ),
           SizedBox(width: 15),
-          // GestureDetector(
-          //   onTap: () {
-          //     Navigator.push(
-          //         context, MaterialPageRoute(builder: (context) => profile()));
-          //   },
-          //   child: Icon(Icons.account_circle),
-          // ),
           SizedBox(
             width: 5,
           )
@@ -48,52 +39,71 @@ class _lostPageState extends State<lostPage> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back),
+          child: Icon(Icons.arrow_back_ios),
         ),
       ),
       body: Stack(children: [
         Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color(0xFF0A0E21)!,
-            Colors.blueGrey[600]!,
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        ),
-        StreamBuilder<List<User>>(
-          stream: readUsers(),
-          builder: ((context, snapshot) {
-            if (snapshot.hasError) {
-              return Text('Something went wrong! ${snapshot.error}');
-            } else if (snapshot.hasData) {
-              final users = snapshot.data!;
-              print('$users');
+          color: Colors.white,
+          child: StreamBuilder<List<User>>(
+            stream: readUsers(),
+            builder: ((context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong! ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                final users = snapshot.data!;
+                print('$users');
 
-              return ListView(
-                children: users.map(buildUser).toList(),
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+                return ListView(
+                  children: users.map(buildUser).toList(),
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+          ),
         ),
       ]),
     );
   }
 
   Widget buildUser(User user) => GestureDetector(
-        child: ListTile(
-          title: Text(user.d),
-          subtitle: Text('Key Details: ' +
-              user.k +
-              '\n' +
-              'Contact Details: ' +
-              user.c +
-              '\n'),
+      child: Container(
+        height: 100,
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: white,
+            boxShadow: greenShadow,
+            borderRadius: BorderRadius.circular(20)),
+        margin: EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              user.d,
+              style: text,
+            ),
+            Text(
+              'Key Details: ' + user.k,
+              style: lightText,
+            ),
+            Text(
+              'Contact Details: ' + user.c,
+              style: contText,
+            )
+          ],
         ),
-        // onTap: Navigator.push(context, MaterialPageRoute(builder: (context)=>loginpage())),
-      );
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    showItem(title: user.d, keys: user.k, contact: user.c)));
+      });
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
       .collection('Lost')
       .snapshots()
